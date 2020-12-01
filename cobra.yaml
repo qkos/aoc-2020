@@ -1,0 +1,6 @@
+author: qkos
+year: 2020
+license:
+  text: |
+    {{ .copyright }}
+
