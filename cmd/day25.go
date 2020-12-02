@@ -17,5 +17,4 @@ var day25Cmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(day25Cmd)
-
 }
