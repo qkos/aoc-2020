@@ -30,13 +30,13 @@ var day11Cmd = &cobra.Command{
 			mp = append(mp, ln)
 		}
 
-		fmt.Printf("part1: %d\n", Adjacent(mp))
-		fmt.Printf("part2: %d\n", FirstUp(mp))
+		fmt.Printf("part1: %d\n", d11part1(mp))
+		fmt.Printf("part2: %d\n", d11part2(mp))
 	},
 }
 
-// PrintR debug yo
-func PrintR(left [][]string) {
+// D11PrintR debug yo
+func D11PrintR(left [][]string) {
 	for _, rows := range left {
 		for _, v := range rows {
 			fmt.Print(v)
@@ -46,7 +46,7 @@ func PrintR(left [][]string) {
 	fmt.Println()
 }
 
-func FirstUp(prev [][]string) int {
+func d11part2(prev [][]string) int {
 	it := 0
 	rows := len(prev)
 	cols := len(prev[0])
@@ -56,7 +56,7 @@ func FirstUp(prev [][]string) int {
 	}
 	for {
 
-		//PrintR(prev)
+		//D11PrintR(prev)
 		sit := it%2 == 0
 		var next [][]string
 
@@ -74,7 +74,7 @@ func FirstUp(prev [][]string) int {
 			next = append(next, mpr)
 		}
 		it++
-		//PrintR(next)
+		//D11PrintR(next)
 		//fmt.Println("----------------------------------")
 		if eq(prev, next) {
 			// done!
@@ -85,11 +85,11 @@ func FirstUp(prev [][]string) int {
 	}
 }
 
-func Adjacent(prev [][]string) int {
+func d11part1(prev [][]string) int {
 	it := 0
 	for {
 
-		//PrintR(prev)
+		//D11PrintR(prev)
 		sit := it%2 == 0
 		var next [][]string
 		for i, row := range prev {
@@ -106,7 +106,7 @@ func Adjacent(prev [][]string) int {
 			next = append(next, mpr)
 		}
 		it++
-		//PrintR(next)
+		//D11PrintR(next)
 		//fmt.Println("----------------------------------")
 		if eq(prev, next) {
 			// done!
