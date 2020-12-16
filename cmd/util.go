@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"bufio"
+	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func FileToLines(filename string) (out []string, err error) {
@@ -20,6 +23,17 @@ func FileToLines(filename string) (out []string, err error) {
 
 	if err := scanner.Err(); err != nil {
 		return nil, err
+	}
+	return
+}
+
+func ToInts(s, sep string) (out []int) {
+	for _, part := range strings.Split(s, sep) {
+		i, err := strconv.Atoi(part)
+		if err != nil {
+			panic(fmt.Sprintf("%s is not int", part))
+		}
+		out = append(out, i)
 	}
 	return
 }
