@@ -1,3 +1,5 @@
 *.log
 .DS_Store
 tmp/**
+main
+aoc-2020
