@@ -11,18 +11,29 @@ var day25Cmd = &cobra.Command{
 	Use: "day25",
 
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) != 1 {
-			panic("missing input file")
-		}
-		lines, err := FileToLines(args[0])
-		if err != nil {
-			panic(err)
-		}
-
-		for l, line := range lines {
-			fmt.Printf("Input line %d -- %s\n", l, line)
-		}
+		r := bfs(3248366)
+		fmt.Printf("Final: %d\n", tf(4738476, r))
 	},
+}
+
+func tf(sn, l uint64) uint64 {
+	v := uint64(1)
+	for i := 0; i < int(l); i++ {
+		v *= sn
+		v = v % uint64(20201227)
+	}
+	return v
+}
+
+func bfs(e uint64) uint64 {
+	v := uint64(1)
+	for i := uint64(1); ; i++ {
+		v *= 7
+		v = v % uint64(20201227)
+		if v == e {
+			return i
+		}
+	}
 }
 
 func init() {
