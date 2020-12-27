@@ -61,70 +61,13 @@ type Bus struct {
 }
 
 func day13part2(buses []uint64) uint64 {
-	var bs []*Bus
-
+	t, w := uint64(0), uint64(1)
 	for i, b := range buses {
-		i64 := uint64(i)
-		if b == 0 {
-			continue
-		}
-		bs = append(bs, &Bus{b, i64})
-	}
-
-	t := uint64(0)
-	for i := range bs {
-		t = calcBus(t, bs[:i+1])
-	}
-	return t
-}
-
-func GCD(a, b uint64) uint64 {
-	for b != 0 {
-		t := b
-		b = a % b
-		a = t
-	}
-	return a
-}
-
-// find Least Common Multiple (LCM) via GCD
-func LCM(a, b uint64, integers ...uint64) uint64 {
-	result := a * b / GCD(a, b)
-
-	for i := 0; i < len(integers); i++ {
-		result = LCM(result, integers[i])
-	}
-
-	return result
-}
-
-func calcBus(t uint64, bs []*Bus) uint64 {
-
-	inc := uint64(1)
-
-	// figure out increment by multiples of previous ones
-	for i, b := range bs {
-		if i == len(bs)-1 {
-			break
-		}
-		// numbers conveniently prime
-		inc = inc * b.No // LCM(inc, b.No)
-	}
-
-	// loop through
-	var win bool
-	for !win {
-		win = true
-	inner:
-		for _, b := range bs {
-			mod := (t + b.Index) % b.No
-			if mod != 0 {
-				win = false
-				t += inc
-				break inner
+		if b != 0 {
+			for i64 := uint64(i); (t+i64)%b != 0; t += w {
 			}
+			w *= b
 		}
-
 	}
 	return t
 }
